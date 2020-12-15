@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'css/home.css') }} ">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+
+        <link rel="icon" type="image/jpg" href="static/images/bot.jpg"/>
+
+        <title>GrandPyBot</title>
+        {% block head %}{% endblock %}
+    </head>
+
+    <body>
+        {% block body %}{% endblock %}
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://github.com/flodelage" target="_blank"> <i class="fab fa-github"></i> </a>
+                <a href="#"><i class="fab fa-instagram"> </i> </a>
+                <a href="#"><i class="fab fa-facebook"> </i> </a>
+                <a href="#"><i class="fab fa-twitter"> </i> </a>
+                <a href="https://www.linkedin.com/in/florian-delage" target="_blank"> <i class="fab fa-linkedin"></i> </a>
+            </div>
+            <div class="footer-copyright">
+                Footer made with <i class="fas fa-heart"></i> by Florian Delage
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+    </body>
+
+    </html>
