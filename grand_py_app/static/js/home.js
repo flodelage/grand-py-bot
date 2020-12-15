@@ -5,7 +5,7 @@ $(document).ready(function() {
 		var place = $('#input_place').val(); //la saisie est stockée
 
 		$.ajax({
-			url: '/place',
+			url: '/process',
 			data: $('form').serialize(), //la saisie est envoyée à la méthode de l'url /place
 			type: 'POST',
 			success: function(response){

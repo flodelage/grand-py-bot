@@ -1,5 +1,6 @@
 
 from flask import Flask, render_template, request, jsonify
+from .utils.question_cleaner import QuestionCleaner
 
 app = Flask(__name__)
 
@@ -7,7 +8,8 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-@app.route('/place', methods=['POST'])
-def place():
-    place = request.form['place']
-    return jsonify({'place':place})
+@app.route('/process', methods=['POST'])
+def process():
+    question = request.form['question']
+    cleaner = QuestionCleaner(question)
+    return jsonify({'question': cleaner.remove_punctuations})
