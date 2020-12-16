@@ -24,5 +24,5 @@ class QuestionCleaner:
     def remove_all(self, question):
         question_cleaned = self.remove_punctuations(question)
         question_cleaned = self.remove_stop_words(question_cleaned)
-        return question_cleaned
+        return question_cleaned.strip()
 

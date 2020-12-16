@@ -13,5 +13,4 @@ def home():
 def process():
     question = request.form['question']
     cleaner = QuestionCleaner()
-    print(cleaner.remove_all(question))
-    return jsonify({'question': question})
+    return jsonify({'question': cleaner.remove_all(question)})
