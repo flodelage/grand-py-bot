@@ -1,20 +1,28 @@
 
-from .stop_words import common_words, welcome_words
+from grand_py_app.utils.constants import COMMON_WORDS, GREETINGS, PUNCTUATIONS
+
 
 class QuestionCleaner:
-    def __init__(self, question):
-        self.question = question
+    def remove_punctuations(self, question):
+        question_cleaned = ""
+        for char in question:
+            if char in PUNCTUATIONS:
+                question_cleaned += " "
+            else:
+                question_cleaned += char
+        return question_cleaned
 
-    def remove_punctuations(self):
-        punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
-        final_question = ""
-        for char in self.question:
-            if char not in punctuations:
-                final_question += char
-        return final_question
+    def remove_stop_words(self, question):
+        question_cleaned = ""
+        for word in question.split():
+            if word in COMMON_WORDS or word in GREETINGS:
+                question_cleaned += " "
+            else:
+                question_cleaned += word + " "
+        return question_cleaned
 
-    def remove_stop_words(self):
-        pass
+    def remove_all(self, question):
+        question_cleaned = self.remove_punctuations(question)
+        question_cleaned = self.remove_stop_words(question_cleaned)
+        return question_cleaned
 
-    def remove_all(self):
-        pass
