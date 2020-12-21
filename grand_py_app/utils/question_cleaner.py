@@ -15,10 +15,10 @@ class QuestionCleaner:
     def remove_stop_words(self, question):
         question_cleaned = ""
         for word in question.split():
-            if word in COMMON_WORDS or word in GREETINGS:
+            if word.lower() in COMMON_WORDS or word.lower() in GREETINGS:
                 question_cleaned += " "
             else:
-                question_cleaned += word + " "
+                question_cleaned += word.lower() + " "
         return question_cleaned
 
     def remove_all(self, question):

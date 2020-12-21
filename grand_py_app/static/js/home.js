@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			url: '/process',
-			data: $('form').serialize(), //la saisie est envoyée à la méthode de l'url /place
+			data: $('form').serialize(), //la saisie est envoyée à la méthode de l'url /process
 			type: 'POST',
 			success: function(response){
 				console.log(response);
