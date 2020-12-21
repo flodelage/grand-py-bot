@@ -1,6 +1,7 @@
 
 from flask import Flask, render_template, request, jsonify
 from grand_py_app.utils.question_cleaner import QuestionCleaner
+from grand_py_app.apis.google_maps import *
 
 
 app = Flask(__name__)
@@ -13,4 +14,5 @@ def home():
 def process():
     question = request.form['question']
     cleaner = QuestionCleaner()
-    return jsonify({'question': cleaner.remove_all(question)})
+    maps = GoogleMaps()
+    return jsonify({'question': cleaner.remove_all(question), 'geoloc': maps.search_address(question)})
