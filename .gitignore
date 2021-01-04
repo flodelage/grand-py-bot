@@ -1,5 +1,9 @@
-env/
 __pycache__/
 __init__.py
+
 .pytest_cache
+.vscode
+.gitignore
+
+env/
 env_variables.py
