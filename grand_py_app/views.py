@@ -14,5 +14,6 @@ def home():
 def process():
     question = request.form['question']
     cleaner = QuestionCleaner()
+    address = cleaner.address(question)
     maps = GoogleMaps()
-    return jsonify({'question': cleaner.remove_all(question), 'geoloc': maps.search_address(question)})
+    return jsonify({"url":maps.request_get(address)})

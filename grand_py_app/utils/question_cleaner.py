@@ -3,6 +3,7 @@ from grand_py_app.utils.constants import COMMON_WORDS, GREETINGS, PUNCTUATIONS
 
 
 class QuestionCleaner:
+
     def remove_punctuations(self, question):
         question_cleaned = ""
         for char in question:
@@ -26,3 +27,7 @@ class QuestionCleaner:
         question_cleaned = self.remove_stop_words(question_cleaned)
         return question_cleaned.strip()
 
+    def address_for_url(self, question):
+        question_cleaned = self.remove_all(question)
+        question_splited = question_cleaned.split() # ['55', 'rue', 'faubourg', 'saint', 'honoré', 'paris']
+        return "+".join(question_splited) # '55+rue+faubourg+saint+honoré+paris'
