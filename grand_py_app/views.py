@@ -19,4 +19,4 @@ def process():
     wiki = MediaWiki()
     address = cleaner.address_for_url(question)
     location = maps.get_location(address)
-    return jsonify({"data": wiki.get_informations(location)})
+    return jsonify({"location_infos": wiki.get_informations(location)})

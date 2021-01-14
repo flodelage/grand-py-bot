@@ -19,13 +19,12 @@ class MediaWiki():
         request = requests.get("https://fr.wikipedia.org/w/api.php", params=payload)
         return request.json()
 
-        def get_informations(self, location):
-            data = self.__request_get(location)
-            pages = data["query"]["pages"]
-            first_page = pages[list(pages)[0]]
-            location_infos = {
-                "title": first_page['title'],
-                "extract": first_page['extract']
-                "wiki_url": "https://fr.wikipedia.org/"
-            }
-            return location_infos
+    def get_informations(self, location):
+        data = self.__request_get(location)
+        pages = data["query"]["pages"]
+        first_page = pages[list(pages)[0]]
+        return {
+            "title": first_page['title'],
+            "extract": first_page['extract'],
+            "wiki_url": f"https://fr.wikipedia.org/wiki/{first_page['title']}".replace(" ", "_")
+        }
