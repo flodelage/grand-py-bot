@@ -10,8 +10,8 @@ class MediaWiki():
             "format": "json",
             "generator": "geosearch",
             "ggscoord": f"{location['lat']}|{location['lng']}",
-            "ggslimit": "10",
-            "ggsradius": "100",
+            "ggslimit": "1",
+            "ggsradius": "1000",
             "prop" : "extracts",
             "exintro" : "",
             "explaintext" : ""
@@ -23,8 +23,14 @@ class MediaWiki():
         data = self.__request_get(location)
         pages = data["query"]["pages"]
         first_page = pages[list(pages)[0]]
-        return {
-            "title": first_page['title'],
-            "extract": first_page['extract'],
-            "wiki_url": f"https://fr.wikipedia.org/wiki/{first_page['title']}".replace(" ", "_")
+
+        location_infos = {
+            "title": "",
+            "extract": "",
+            "wiki_url": ""
         }
+
+        location_infos["title"] = first_page['title'],
+        location_infos["extract"] = first_page['extract'],
+        location_infos["wiki_url"] = f"https://fr.wikipedia.org/wiki/{first_page['title']}".replace(" ", "_")
+        return location_infos

@@ -21,8 +21,14 @@
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-  /* FORM */
+ /* FORM */
 
+ /* MAP */
+ #map {
+     margin: 15%;
+     height: 600px;
+     width: 70%;
+ }
 
 /* FOOTER */
 .footer {
@@ -54,3 +60,4 @@
 .footer .fa-heart {
     color: #D23333;
 }
+

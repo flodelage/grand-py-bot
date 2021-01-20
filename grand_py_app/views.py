@@ -18,5 +18,5 @@ def process():
     maps = GoogleMaps()
     wiki = MediaWiki()
     address = cleaner.address_for_url(question)
-    location = maps.get_location(address)
-    return jsonify({"location_infos": wiki.get_informations(location)})
+    location_coordinates = maps.get_location(address)
+    return jsonify({"location_coordinates": location_coordinates,"location_infos": wiki.get_informations(location_coordinates)})
