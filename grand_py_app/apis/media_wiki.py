@@ -20,7 +20,7 @@ class MediaWiki():
         request = requests.get("https://fr.wikipedia.org/w/api.php", params=payload)
         return request.json()
 
-    def get_informations(self, location):
+    def get_story(self, location):
         location_infos = {
             "title": "",
             "extract": "",

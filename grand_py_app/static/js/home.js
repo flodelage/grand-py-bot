@@ -13,16 +13,20 @@ function initMap(locationCoordinates, div) {
 }
 
 // Initialize and add the bot response
-function title_speech(address) {
+function userRequestSpeech(user_request) {
+	return "Je connais " + user_request + " !";
+}
+
+function titleSpeech(address) {
 	return "Je sais plein de choses sur " + address + " !";
 }
 
-function extract_speech(extract) {
+function extractSpeech(extract) {
 	return "Laisse moi te raconter... " + extract;
 }
 
-function wiki_speech(wiki_link) {
-	return "Si tu veux en savoir plus n'hésites pas à consulter cette page " + wiki_link;
+function wikiSpeech() {
+	return "Si tu veux en savoir plus n'hésite pas à consulter cette page ";
 }
 
 function locationStory(address, extract, wiki_url) {
@@ -30,12 +34,12 @@ function locationStory(address, extract, wiki_url) {
 
 	const responseAddress = document.createElement("p");
 	responseAddress.className = "response-address";
-	responseAddress.textContent = title_speech(address);
+	responseAddress.textContent = titleSpeech(address);
 	responseElement.appendChild(responseAddress);
 
 	const responseExtract = document.createElement("p");
 	responseExtract.className = "response-extract";
-	responseExtract.textContent = extract_speech(extract);
+	responseExtract.textContent = extractSpeech(extract);
 	responseElement.appendChild(responseExtract);
 
 	const responseUrl = document.createElement("p");
@@ -44,9 +48,11 @@ function locationStory(address, extract, wiki_url) {
 	urlLink.className = "url-link";
 	const urlLinkText = document.createTextNode("Wikipédia");
 	urlLink.setAttribute('href', wiki_url);
-	responseUrl.textContent = wiki_speech(urlLink);
+	urlLink.setAttribute('target', '_blank')
+	urlLink.appendChild(urlLinkText);
+	responseUrl.textContent = wikiSpeech();
+	responseUrl.appendChild(urlLink);
 	responseElement.appendChild(responseUrl);
-	responseElement.appendChild(urlLinkText);
 }
 
 // Ajax when user submits
@@ -59,8 +65,8 @@ $(document).ready(function() {
 			data: $('form').serialize(), //la saisie est envoyée à la méthode de l'url /process
 			type: 'POST',
 			success: function(response) {
-				locationStory(response['address'], response['location_infos']['extract'], response['location_infos']['wiki_url']);
-				initMap(response['location_coordinates'], "map")
+				locationStory(response['infos']['maps_address'], response['infos']['wiki_extract'], response['infos']['wiki_url']);
+				initMap({'lat':response['infos']['maps_lat'],'lng':response['infos']['maps_lng']}, "map")
 			},
 			error: function(error) {
 				console.log(error);
