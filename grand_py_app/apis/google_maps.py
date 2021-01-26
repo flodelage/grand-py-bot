@@ -10,15 +10,35 @@ class GoogleMaps():
         self.key = MAPS_KEY
 
     def __request_get(self, address):
+        address_splited = address.split() # ['55', 'rue', 'faubourg', 'saint', 'honoré', 'paris']
+        address_for_url = "+".join(address_splited) # '55+rue+faubourg+saint+honoré+paris'
+
         payload = {
-            "address" : address,
+            "address" : address_for_url,
             "key" : self.key
         }
+
         request = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json", params=payload)
         return request.json()
 
     def get_location(self, address):
+        location = {
+            'address': "",
+            'lat': 0,
+            'lng': 0,
+            'status': ""
+        }
+
         data = self.__request_get(address)
-        results = data["results"][0]
-        geometry = results["geometry"]
-        return geometry["location"] # {'lat': 48.8701231, 'lng': 2.3165784}
+        try:
+            result = data["results"][0]
+            location["address"] = result["formatted_address"]
+            location["lat"] = result["geometry"]["location"]["lat"]
+            location["lng"] = result["geometry"]["location"]["lng"]
+            if result["geometry"]["location_type"] != "APPROXIMATE":
+                location["status"] = "accurate"
+            else:
+                location["status"] = "approximate"
+        except IndexError:
+            location["status"] = "not_found"
+        return location

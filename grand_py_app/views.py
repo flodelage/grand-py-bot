@@ -17,6 +17,9 @@ def process():
     cleaner = QuestionCleaner()
     maps = GoogleMaps()
     wiki = MediaWiki()
-    address = cleaner.address_for_url(question)
-    location_coordinates = maps.get_location(address)
-    return jsonify({"location_coordinates": location_coordinates,"location_infos": wiki.get_informations(location_coordinates)})
+    address = cleaner.remove_all(question)
+    location = maps.get_location(address)
+    location_coordinates = {'lat':location['lat'],'lng':location['lng']}
+    return jsonify({"address": location['address'],
+                    "location_coordinates": location_coordinates,
+                    "location_infos": wiki.get_informations(location_coordinates)})

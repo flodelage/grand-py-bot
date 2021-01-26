@@ -1,5 +1,6 @@
 
 import requests
+import random
 
 
 class MediaWiki():
@@ -10,7 +11,7 @@ class MediaWiki():
             "format": "json",
             "generator": "geosearch",
             "ggscoord": f"{location['lat']}|{location['lng']}",
-            "ggslimit": "1",
+            "ggslimit": "5",
             "ggsradius": "1000",
             "prop" : "extracts",
             "exintro" : "",
@@ -20,17 +21,23 @@ class MediaWiki():
         return request.json()
 
     def get_informations(self, location):
-        data = self.__request_get(location)
-        pages = data["query"]["pages"]
-        first_page = pages[list(pages)[0]]
-
         location_infos = {
             "title": "",
             "extract": "",
-            "wiki_url": ""
+            "wiki_url": "",
+            "response_nb": ""
         }
 
-        location_infos["title"] = first_page['title'],
-        location_infos["extract"] = first_page['extract'],
-        location_infos["wiki_url"] = f"https://fr.wikipedia.org/wiki/{first_page['title']}".replace(" ", "_")
+        data = self.__request_get(location)
+
+        try:
+            pages = data["query"]["pages"]
+            random_page_id = random.choices(list(pages.keys()))[0]
+            random_page = pages[random_page_id]
+            location_infos["title"] = random_page['title']
+            location_infos["extract"] = random_page['extract']
+            location_infos["wiki_url"] = f"https://fr.wikipedia.org/wiki/{random_page['title']}".replace(" ", "_")
+            location_infos["response_nb"] = "many" if len(pages) > 1 else "one"
+        except KeyError:
+            location_infos["response_nb"] = "none"
         return location_infos
