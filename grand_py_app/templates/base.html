@@ -22,12 +22,12 @@
 
         <!-- FOOTER -->
         <div class="footer">
+            <div class="footer-copyright">
+                Application made with <i class="fas fa-heart"></i> by Florian Delage
+            </div>
             <div class="footer-links">
                 <a href="https://github.com/flodelage" target="_blank"> <i class="fab fa-github"></i> </a>
                 <a href="https://www.linkedin.com/in/florian-delage" target="_blank"> <i class="fab fa-linkedin"></i> </a>
-            </div>
-            <div class="footer-copyright">
-                Footer made with <i class="fas fa-heart"></i> by Florian Delage
             </div>
         </div>
 
@@ -35,7 +35,7 @@
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <script
           src="https://maps.googleapis.com/maps/api/js?key= &callback=initMap&libraries=&v=weekly"
-          defer>
+          async defer>
         </script>
         <script src="{{ url_for('static', filename='js/home.js') }}"></script>
     </body>
