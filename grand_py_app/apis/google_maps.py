@@ -41,4 +41,5 @@ class GoogleMaps():
                 location["status"] = "approximate"
         except IndexError:
             location["status"] = "not_found"
+        print(location)
         return location

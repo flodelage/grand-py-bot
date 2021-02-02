@@ -11,20 +11,19 @@
         <h1>Grand Py Bot</h1>
         <p>Challenge his knowledge !</p>
     </div>
+
     <!-- FORM -->
-    <form id="form-place">
-        <div class="form-group">
-            <input type="text" class="form-control" id="input_place" name="question" placeholder="Enter a place">
-        </div>
-        <button type="submit" class="btn btn-danger"><i class="fas fa-search"></i> Search</button>
+    <form>
+        {{ form.csrf_token }}
+        {{ form.question(class="input-place", placeholder="Enter a place") }}
+        {{ form.submit(class="submit-button", value="Search") }}
     </form>
 </div>
 
 <!-- RESPONSE -->
 <div id="response">
+    <div id="map">
+    </div>
 </div>
 
-<!-- MAP -->
-<div id="map">
-</div>
 {% endblock %}

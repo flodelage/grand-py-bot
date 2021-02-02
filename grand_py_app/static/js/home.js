@@ -1,6 +1,7 @@
 
-// Initialize and add the map
-function initMap(locationCoordinates, div, responsesDiv) {
+// --------------- GOOGLE MAP ---------------
+function initMap(locationCoordinates, div) {
+	// Initialize and add the map
 	const map = new google.maps.Map(document.getElementById(div), {
 	  zoom: 17,
 	  center: locationCoordinates,
@@ -12,22 +13,29 @@ function initMap(locationCoordinates, div, responsesDiv) {
 	});
 }
 
-// Initialize and add the bot response
+// --------------- BOT'S RESPONSES ---------------
 function userRequestSpeech(user_request) {
 	return "Je connais " + user_request + " !";
 }
-// --------------------
-function addressSpeech(address) {
-	return "Voici l'adresse: " + address + " !";
+// address
+function addressSpeech(status, address) {
+	switch (status) {
+		case "accurate":
+			return "Voici l'adresse: " + address + " !";
+		case "approximate":
+			return "C'est un peu vague";
+		case "not_found":
+			return "Désolé mais je ne trouve pas";
+	}
 }
 
-function responseAddress(address) {
+function responseAddress(speech) {
 	const responseAddress = document.createElement("p");
 	responseAddress.className = "response-address";
-	responseAddress.textContent = addressSpeech(address);
+	responseAddress.textContent = speech;
 	return responseAddress;
 }
-// --------------------
+// extract
 function extractSpeech(extract) {
 	return "Je t'ai déjà parlé de ce quartier ? " + extract;
 }
@@ -38,7 +46,7 @@ function responseExtract(extract) {
 	responseExtract.textContent = extractSpeech(extract);
 	return responseExtract;
 }
-// --------------------
+// wiki link
 function wikiSpeech() {
 	return "Si tu veux en savoir plus n'hésite pas à consulter cette page ";
 }
@@ -56,24 +64,25 @@ function responseUrl(wiki_url) {
 	responseUrl.appendChild(urlLink);
 	return responseUrl;
 }
-
-function botResponses(address, extract, wiki_url, locationCoordinates, mapsDiv, responsesDiv) {
+// all responses
+function botResponses(speech, extract, wiki_url, locationCoordinates, mapsDiv, responsesDiv) {
+	initMap(locationCoordinates, mapsDiv);
 	const responseElement = document.getElementById(responsesDiv);
-	const responseAddr = responseAddress(address);
+	const responseAddr = responseAddress(speech);
 	const responseExtr = responseExtract(extract);
 	const responseLink = responseUrl(wiki_url);
 
-	responseElement.appendChild(responseAddr);
+	responseElement.prepend(responseAddr);
 	responseElement.appendChild(responseExtr);
 	responseElement.appendChild(responseLink);
-
-	initMap(locationCoordinates, mapsDiv);
 }
 
-// Ajax when user submits
+// --------------- AJAX ---------------
+const formElement = document.querySelector("form");
+
 $(document).ready(function() {
 
-	$('#form-place').submit(function(event) { //quand l utilisateur soumet sa saisie
+	formElement.addEventListener("submit", function(event) { //quand l utilisateur soumet sa saisie
 
 		var place = $('#input_place').val(); //la saisie est stockée
 
@@ -82,7 +91,8 @@ $(document).ready(function() {
 			data: $('form').serialize(), //la saisie est envoyée à la méthode de l'url /process
 			type: 'POST',
 			success: function(response) {
-				botResponses(address=response['infos']['maps_address'],
+				const adrsSpeech = addressSpeech(status=response['infos']['maps_status'],address=response['infos']['maps_address']);
+				botResponses(speech=adrsSpeech,
 							 extract=response['infos']['wiki_extract'],
 							 wiki_url=response['infos']['wiki_url'],
 							 locationCoordinates={'lat':response['infos']['maps_lat'],'lng':response['infos']['maps_lng']},

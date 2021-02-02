@@ -21,14 +21,45 @@
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
- /* FORM */
+/* FORM */
+.input-place {
+    background-color: white;
+    border-radius: 0.2em;
+    border:0.16em solid rgba(255,255,255,0);
+}
 
- /* MAP */
- #map {
-     margin: 15%;
-     height: 600px;
-     width: 70%;
- }
+.submit-button {
+    background-color: #d23332;
+    color : white;
+    border-radius: 0.2em;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    padding:0.2em 1.2em;
+    margin:0 0.1em 0.1em 0;
+    border:0.16em solid rgba(255,255,255,0);
+    box-sizing: border-box;
+    text-decoration:none;
+}
+
+.submit-button:hover {
+    border-color: rgba(255,255,255,1);
+}
+
+@media all and (max-width:30em) {
+    .submit-button {
+        display:block;
+        margin:0.2em auto;
+    }
+}
+
+/* LOADER */
+
+
+/* MAP */
+#map {
+    margin: 16px auto;
+    height: 500px;
+    width: 500px;
+}
 
 /* FOOTER */
 .footer {
@@ -60,4 +91,3 @@
 .footer .fa-heart {
     color: #D23333;
 }
-
