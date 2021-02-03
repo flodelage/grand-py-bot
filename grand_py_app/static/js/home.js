@@ -17,6 +17,7 @@ function initMap(locationCoordinates, div) {
 function userRequestSpeech(user_request) {
 	return "Je connais " + user_request + " !";
 }
+
 // address
 function addressSpeech(status, address) {
 	switch (status) {
@@ -29,23 +30,32 @@ function addressSpeech(status, address) {
 	}
 }
 
-function responseAddress(speech) {
+function responseAddress(adrSpeech) {
 	const responseAddress = document.createElement("p");
 	responseAddress.className = "response-address";
-	responseAddress.textContent = speech;
+	responseAddress.textContent = adrSpeech;
 	return responseAddress;
 }
+
 // extract
-function extractSpeech(extract) {
-	return "Je t'ai déjà parlé de ce quartier ? " + extract;
+function extractSpeech(responseNb, extract) {
+	switch (responseNb) {
+		case "many":
+			return "Je connais pas mal d'histoires sur ce quartier, par exemple: " + extract;
+		case "one":
+			return "Je connais une histoire sur ce quartier: " + extract;
+		case "none":
+			return "Désolé mais je ne connais pas du tout ce coin là !";
+	}
 }
 
-function responseExtract(extract) {
+function responseExtract(extrSpeech) {
 	const responseExtract = document.createElement("p");
 	responseExtract.className = "response-extract";
-	responseExtract.textContent = extractSpeech(extract);
+	responseExtract.textContent = extrSpeech;
 	return responseExtract;
 }
+
 // wiki link
 function wikiSpeech() {
 	return "Si tu veux en savoir plus n'hésite pas à consulter cette page ";
@@ -64,12 +74,13 @@ function responseUrl(wiki_url) {
 	responseUrl.appendChild(urlLink);
 	return responseUrl;
 }
+
 // all responses
-function botResponses(speech, extract, wiki_url, locationCoordinates, mapsDiv, responsesDiv) {
+function botResponses(addressSpeech, extractSpeech, wiki_url, locationCoordinates, mapsDiv, responsesDiv) {
 	initMap(locationCoordinates, mapsDiv);
 	const responseElement = document.getElementById(responsesDiv);
-	const responseAddr = responseAddress(speech);
-	const responseExtr = responseExtract(extract);
+	const responseAddr = responseAddress(addressSpeech);
+	const responseExtr = responseExtract(extractSpeech);
 	const responseLink = responseUrl(wiki_url);
 
 	responseElement.prepend(responseAddr);
@@ -91,9 +102,10 @@ $(document).ready(function() {
 			data: $('form').serialize(), //la saisie est envoyée à la méthode de l'url /process
 			type: 'POST',
 			success: function(response) {
-				const adrsSpeech = addressSpeech(status=response['infos']['maps_status'],address=response['infos']['maps_address']);
-				botResponses(speech=adrsSpeech,
-							 extract=response['infos']['wiki_extract'],
+				const aSpeech = addressSpeech(status=response['infos']['maps_status'],address=response['infos']['maps_address']);
+				const eSpeech = extractSpeech(responseNb=response['infos']['wiki_response_nb'],extract=response['infos']['wiki_extract']);
+				botResponses(addressSpeech=aSpeech,
+							 extractSpeech=eSpeech,
 							 wiki_url=response['infos']['wiki_url'],
 							 locationCoordinates={'lat':response['infos']['maps_lat'],'lng':response['infos']['maps_lng']},
 							 mapsDiv="map",
