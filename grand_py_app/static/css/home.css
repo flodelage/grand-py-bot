@@ -21,6 +21,7 @@
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
+
 /* FORM */
 .input-place {
     background-color: white;
@@ -29,7 +30,7 @@
 }
 
 .submit-button {
-    background-color: #d23332;
+    background-color: rgb(210, 51, 50);
     color : white;
     border-radius: 0.2em;
     text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
@@ -51,15 +52,94 @@
     }
 }
 
+
+/* CHAT DIV */
+#chat {
+    display: flex;
+    padding: 0em 5em;
+}
+
+
 /* LOADER */
 
 
+/* CHAT USER */
+#chat-user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+}
+
+.chat-bubble-user {
+    position: relative;
+    max-width: 35em;
+    background-color: rgba(50, 210, 50, 0.7);
+    margin: 0.5em 0em 2em 0em;
+    padding: 1.125em 1.5em;
+    font-size: 1.25em;
+    border-radius: 1rem;
+    box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+}
+
+.chat-bubble-user::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 100%;
+    left: 1.5em;
+    border: .75rem solid transparent;
+    border-top: none;
+    border-bottom-color: rgba(50, 210, 50, 0.7);
+    filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+}
+
+
+/* CHAT BOT */
+#chat-bot {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 50%;
+}
+
+.chat-bubble-bot {
+    position: relative;
+    max-width: 35em;
+    background-color: rgba(210, 51, 50, 0.7);
+    margin: 0.5em 0em 2em 0em;
+    padding: 1.125em 1.5em;
+    font-size: 1.25em;
+    border-radius: 1rem;
+    box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+}
+
+.chat-bubble-bot::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 100%;
+    right: 1.5em;
+    border: .75rem solid transparent;
+    border-top: none;
+    border-bottom-color: rgba(210, 51, 50, 0.7);
+    filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+}
+
+.img-chat-bot {
+    height: 5em;
+    width: 5em;
+}
+
 /* MAP */
 #map {
-    margin: 16px auto;
-    height: 500px;
-    width: 500px;
+    margin: 2em 0em;
+    height: 30em;
+    width: 40em;
 }
+
 
 /* FOOTER */
 .footer {

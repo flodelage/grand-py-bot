@@ -14,8 +14,16 @@ function initMap(locationCoordinates, div) {
 }
 
 // --------------- BOT'S RESPONSES ---------------
-function userRequestSpeech(user_request) {
-	return "Je connais " + user_request + " !";
+// user question
+function userQuestionSpeech(usrQuestion) {
+	return usrQuestion;
+}
+
+function userQuestion(usrQuestion) {
+	const userQuestion = document.createElement("p");
+	userQuestion.className = "chat-bubble-user";
+	userQuestion.textContent = usrQuestion;
+	return userQuestion;
 }
 
 // address
@@ -32,7 +40,7 @@ function addressSpeech(status, address) {
 
 function responseAddress(adrSpeech) {
 	const responseAddress = document.createElement("p");
-	responseAddress.className = "response-address";
+	responseAddress.className = "chat-bubble-bot";
 	responseAddress.textContent = adrSpeech;
 	return responseAddress;
 }
@@ -51,19 +59,19 @@ function extractSpeech(responseNb, extract) {
 
 function responseExtract(extrSpeech) {
 	const responseExtract = document.createElement("p");
-	responseExtract.className = "response-extract";
+	responseExtract.className = "chat-bubble-bot";
 	responseExtract.textContent = extrSpeech;
 	return responseExtract;
 }
 
 // wiki link
 function wikiSpeech() {
-	return "Si tu veux en savoir plus n'hésite pas à consulter cette page ";
+	return "Si jamais tu veux en savoir plus, n'hésite pas à cliquer sur ce lien vers ";
 }
 
 function responseUrl(wiki_url) {
 	const responseUrl = document.createElement("p");
-	responseUrl.className = "response-url";
+	responseUrl.className = "chat-bubble-bot";
 	const urlLink = document.createElement("a");
 	urlLink.className = "url-link";
 	const urlLinkText = document.createTextNode("Wikipédia");
@@ -76,16 +84,28 @@ function responseUrl(wiki_url) {
 }
 
 // all responses
-function botResponses(addressSpeech, extractSpeech, wiki_url, locationCoordinates, mapsDiv, responsesDiv) {
+function botResponses(usrQuestion, addressSpeech, extractSpeech, wiki_url, locationCoordinates, mapsDiv, userChatDiv, botChatDiv) {
 	initMap(locationCoordinates, mapsDiv);
-	const responseElement = document.getElementById(responsesDiv);
-	const responseAddr = responseAddress(addressSpeech);
-	const responseExtr = responseExtract(extractSpeech);
-	const responseLink = responseUrl(wiki_url);
 
-	responseElement.prepend(responseAddr);
-	responseElement.appendChild(responseExtr);
-	responseElement.appendChild(responseLink);
+	const imgBot = new Image();
+	imgBot.src = 'static/images/mini-bot.png';
+	imgBot.className = "img-chat-bot"
+
+	const chatUserElement = document.getElementById(userChatDiv);
+	const userQuest = userQuestion(usrQuestion);
+	chatUserElement.appendChild(userQuest);
+
+	const botUserElement = document.getElementById(botChatDiv);
+	const responseAddr = responseAddress(addressSpeech);
+	botUserElement.prepend(imgBot, responseAddr);
+
+	const responseExtr = responseExtract(extractSpeech);
+	botUserElement.appendChild(imgBot);
+	botUserElement.appendChild(responseExtr);
+
+	const responseLink = responseUrl(wiki_url);
+	botUserElement.appendChild(imgBot);
+	botUserElement.appendChild(responseLink);
 }
 
 // --------------- AJAX ---------------
@@ -104,12 +124,14 @@ $(document).ready(function() {
 			success: function(response) {
 				const aSpeech = addressSpeech(status=response['infos']['maps_status'],address=response['infos']['maps_address']);
 				const eSpeech = extractSpeech(responseNb=response['infos']['wiki_response_nb'],extract=response['infos']['wiki_extract']);
-				botResponses(addressSpeech=aSpeech,
+				botResponses(usrQuestion= response['infos']['user_question'],
+							 addressSpeech=aSpeech,
 							 extractSpeech=eSpeech,
 							 wiki_url=response['infos']['wiki_url'],
 							 locationCoordinates={'lat':response['infos']['maps_lat'],'lng':response['infos']['maps_lng']},
 							 mapsDiv="map",
-							 responsesDiv="response");
+							 userChatDiv="chat-user",
+							 botChatDiv="chat-bot");
 			},
 			error: function(error) {
 				console.log(error);

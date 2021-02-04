@@ -9,9 +9,9 @@ class Response:
         self.maps = GoogleMaps()
         self.wiki = MediaWiki()
 
-    def infos(self, user_request):
+    def infos(self, user_question):
         infos = {
-            'user_request': "",
+            'user_question': "",
             'maps_address': "",
             'maps_lat': 0,
             'maps_lng': 0,
@@ -22,11 +22,11 @@ class Response:
             'wiki_response_nb': ""
         }
 
-        cleaned_request = self.cleaner.remove_all(user_request)
+        cleaned_request = self.cleaner.remove_all(user_question)
         location = self.maps.get_location(cleaned_request)
         story = self.wiki.get_story({'lat':location['lat'],'lng':location['lng']})
 
-        infos['user_request'] = cleaned_request
+        infos['user_question'] = user_question.capitalize()
         infos['maps_address'] = location['address']
         infos['maps_lat'] = location['lat']
         infos['maps_lng'] = location['lng']

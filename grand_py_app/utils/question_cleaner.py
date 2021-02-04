@@ -4,7 +4,7 @@ from grand_py_app.utils.constants import COMMON_WORDS, GREETINGS, PUNCTUATIONS
 
 class QuestionCleaner:
 
-    def __remove_punctuations(self, question):
+    def remove_punctuations(self, question):
         question_cleaned = ""
         for char in question:
             if char in PUNCTUATIONS:
@@ -13,7 +13,7 @@ class QuestionCleaner:
                 question_cleaned += char
         return question_cleaned
 
-    def __remove_stop_words(self, question):
+    def remove_stop_words(self, question):
         question_cleaned = ""
         for word in question.split():
             if word.lower() in COMMON_WORDS or word.lower() in GREETINGS:
@@ -23,6 +23,6 @@ class QuestionCleaner:
         return question_cleaned
 
     def remove_all(self, question):
-        question_cleaned = self.__remove_punctuations(question)
-        question_cleaned = self.__remove_stop_words(question_cleaned)
+        question_cleaned = self.remove_punctuations(question)
+        question_cleaned = self.remove_stop_words(question_cleaned)
         return question_cleaned.strip()

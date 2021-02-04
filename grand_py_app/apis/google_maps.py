@@ -9,7 +9,7 @@ class GoogleMaps():
     def __init__(self):
         self.key = MAPS_KEY
 
-    def __request_get(self, address):
+    def request_get(self, address):
         address_splited = address.split() # ['55', 'rue', 'faubourg', 'saint', 'honoré', 'paris']
         address_for_url = "+".join(address_splited) # '55+rue+faubourg+saint+honoré+paris'
 
@@ -29,7 +29,7 @@ class GoogleMaps():
             'status': ""
         }
 
-        data = self.__request_get(address)
+        data = self.request_get(address)
         try:
             result = data["results"][0]
             location["address"] = result["formatted_address"]
@@ -41,5 +41,4 @@ class GoogleMaps():
                 location["status"] = "approximate"
         except IndexError:
             location["status"] = "not_found"
-        print(location)
         return location
