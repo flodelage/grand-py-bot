@@ -87,24 +87,29 @@ function responseUrl(wiki_url) {
 function botResponses(usrQuestion, addressSpeech, extractSpeech, wiki_url, locationCoordinates, mapsDiv, userChatDiv, botChatDiv) {
 	initMap(locationCoordinates, mapsDiv);
 
-	const imgBot = new Image();
-	imgBot.src = 'static/images/mini-bot.png';
-	imgBot.className = "img-chat-bot"
-
 	const chatUserElement = document.getElementById(userChatDiv);
 	const userQuest = userQuestion(usrQuestion);
 	chatUserElement.appendChild(userQuest);
 
+	const imgBot1 = new Image();
+	imgBot1.src = 'static/images/mini-bot.png';
+	imgBot1.className = "img-chat-bot"
 	const botUserElement = document.getElementById(botChatDiv);
 	const responseAddr = responseAddress(addressSpeech);
-	botUserElement.prepend(imgBot, responseAddr);
+	botUserElement.prepend(imgBot1, responseAddr);
 
+	const imgBot2 = new Image();
+	imgBot2.src = 'static/images/mini-bot.png';
+	imgBot2.className = "img-chat-bot"
 	const responseExtr = responseExtract(extractSpeech);
-	botUserElement.appendChild(imgBot);
+	botUserElement.appendChild(imgBot2);
 	botUserElement.appendChild(responseExtr);
 
+	const imgBot3 = new Image();
+	imgBot3.src = 'static/images/mini-bot.png';
+	imgBot3.className = "img-chat-bot"
 	const responseLink = responseUrl(wiki_url);
-	botUserElement.appendChild(imgBot);
+	botUserElement.appendChild(imgBot3);
 	botUserElement.appendChild(responseLink);
 }
 
