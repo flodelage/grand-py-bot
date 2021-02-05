@@ -1,69 +1,93 @@
 
-/* HEADER */
+/******************** BANNER ********************/
 .banner {
-    background-size: cover;
-    background-position: center;
-    padding: 150px 0;
+    display: flex;
+    justify-content: space-between;
+    background: rgb(36, 41, 46);
+    border-bottom: 3px solid rgba(153, 205, 210);
+    padding: 1em;
+    width: 100%;
 }
 
-.banner h1 {
+/* Header */
+.banner-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 20%;
+}
+
+.banner-header h1 {
+    color: white;
+    font-family: 'Jockey One', sans-serif;
+}
+
+.banner-header a:hover {
+    text-decoration: none;
+}
+
+.banner-header p {
+    color: white;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
-    color: white;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    font-size: 32px;
-    font-weight: bold;
 }
 
-.banner p {
-    font-size: 20px;
-    color: white;
-    opacity: 0,2;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+/* Form */
+.banner-form {
+    display: flex;
+    align-items: flex-end;
+    width: 60%;
 }
 
-
-/* FORM */
 .input-place {
     background-color: white;
+    width: 45em;
+    height: 2.5em;
     border-radius: 0.2em;
     border:0.16em solid rgba(255,255,255,0);
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #212529
 }
 
 .submit-button {
-    background-color: rgb(210, 51, 50);
+    background: rgb(153, 205, 210);
+    font-family: 'Roboto', sans-serif;
     color : white;
+    width: 5em;
+    height: 2.5em;
     border-radius: 0.2em;
     text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
-    padding:0.2em 1.2em;
-    margin:0 0.1em 0.1em 0;
-    border:0.16em solid rgba(255,255,255,0);
-    box-sizing: border-box;
+    margin: 0;
     text-decoration:none;
 }
 
 .submit-button:hover {
-    border-color: rgba(255,255,255,1);
+    background: rgb(0, 227, 213);
 }
 
-@media all and (max-width:30em) {
-    .submit-button {
-        display:block;
-        margin:0.2em auto;
-    }
+/* Image */
+.banner-image {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 20%;
+}
+
+#banner-bot {
+    width: 5em;
+    height: 5em;
 }
 
 
-/* CHAT DIV */
+/******************** CHAT ********************/
 #chat {
     display: flex;
-    padding: 0em 5em;
+    padding: 2em 5em;
+    background: rgb(250,250,250);
 }
 
-
-/* LOADER */
-
-
-/* CHAT USER */
+/* Chat user */
 #chat-user {
     display: flex;
     flex-direction: column;
@@ -74,9 +98,11 @@
 .chat-bubble-user {
     position: relative;
     max-width: 35em;
-    background-color: rgba(50, 210, 50, 0.7);
-    margin: 0.5em 0em 2em 0em;
+    background-color: rgb(255, 255, 255);
+    margin: 1.1em 0em 2em 0em;
     padding: 1.125em 1.5em;
+    font-family: 'Roboto', sans-serif;
+    color: #212529;
     font-size: 1.25em;
     border-radius: 1rem;
     box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
@@ -91,12 +117,16 @@
     left: 1.5em;
     border: .75rem solid transparent;
     border-top: none;
-    border-bottom-color: rgba(50, 210, 50, 0.7);
+    border-bottom-color: rgb(255, 255, 255);
     filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
 }
 
+.img-chat-user {
+    height: 3em;
+    width: 3em;
+}
 
-/* CHAT BOT */
+/* Chat bot */
 #chat-bot {
     display: flex;
     flex-direction: column;
@@ -107,9 +137,11 @@
 .chat-bubble-bot {
     position: relative;
     max-width: 35em;
-    background-color: rgba(210, 51, 50, 0.7);
+    background-color: rgba(153, 205, 210, 0.8);
     margin: 0.5em 0em 2em 0em;
     padding: 1.125em 1.5em;
+    font-family: 'Roboto', sans-serif;
+    color: #212529;
     font-size: 1.25em;
     border-radius: 1rem;
     box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
@@ -124,8 +156,18 @@
     right: 1.5em;
     border: .75rem solid transparent;
     border-top: none;
-    border-bottom-color: rgba(210, 51, 50, 0.7);
+    border-bottom-color: rgba(153, 205, 210, 0.8);
     filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+}
+
+.url-link {
+    font-weight: bold;
+    color: #212529
+}
+
+.url-link:hover {
+    text-decoration: none;
+    color: #212529b7
 }
 
 .img-chat-bot {
@@ -133,20 +175,22 @@
     width: 5em;
 }
 
-/* MAP */
+/* Map */
 #map {
     margin: 2em 0em;
     height: 30em;
-    width: 40em;
+    width: 42em;
 }
 
+/* Loader */
 
-/* FOOTER */
+/******************** FOOTER ********************/
 .footer {
-    background: #24292e;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: #24292e;
+    border-top: 3px solid rgba(153, 205, 210);
     height: 100px;
     padding: 0px 50px;
     color: white;
@@ -157,6 +201,10 @@
     align-items: center;
 }
 
+.footer-copyright p {
+    font-family: 'Roboto', sans-serif;
+}
+
 .footer-links a {
     color: white;
     text-decoration: none;
@@ -165,7 +213,7 @@
 }
 
 .footer-links a:hover {
-    color: #d23332;
+    color: rgba(153, 205, 210);
 }
 
 .footer .fa-heart {

@@ -5,29 +5,32 @@
 {% endblock %}
 
 {% block body %}
-<!-- HEADER -->
-<div class="banner" style="background-image: linear-gradient(rgba(36,41,46,0.4),rgba(36,41,46,0.4)), url(static/images/bot.jpg);">
-    <div class="container">
-        <h1>Grand Py Bot</h1>
-        <p>Challenge his knowledge !</p>
-    </div>
 
-    <!-- FORM -->
-    <form>
-        {{ form.csrf_token }}
-        {{ form.question(class="input-place", placeholder="Enter a place") }}
-        {{ form.submit(class="submit-button", value="Search") }}
-    </form>
-</div>
-
-<!-- RESPONSE -->
-<div id="chat">
-    <div id="chat-user">
-    </div>
-    <div id="chat-bot">
-        <div id="map">
+    <!-- HEADER -->
+    <div class="banner">
+        <div class="banner-header">
+            <a href="http://127.0.0.1:5000/"> <h1>GrandPyBot</h1></a>
+            <p><strong>Challenge his knowledge !</strong></p>
+        </div>
+        <div class="banner-form">
+            <form>
+                {{ form.csrf_token }}
+                {{ form.question(class="input-place", placeholder="Enter a place you want GrandPy to speak you about") }}
+                {{ form.submit(class="submit-button", value="Search") }}
+            </form>
+        </div>
+        <div class="banner-image">
         </div>
     </div>
-</div>
+        <!-- FORM -->
+    <!-- RESPONSE -->
+    <div id="chat">
+        <div id="chat-user">
+        </div>
+        <div id="chat-bot">
+            <div id="map">
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

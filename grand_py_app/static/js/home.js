@@ -88,13 +88,16 @@ function botResponses(usrQuestion, addressSpeech, extractSpeech, wiki_url, locat
 	initMap(locationCoordinates, mapsDiv);
 
 	const chatUserElement = document.getElementById(userChatDiv);
+	const imgUser = new Image();
+	imgUser.src = 'static/images/user.png';
+	imgUser.className = "img-chat-user"
 	const userQuest = userQuestion(usrQuestion);
-	chatUserElement.appendChild(userQuest);
+	chatUserElement.prepend(imgUser, userQuest);
 
+	const botUserElement = document.getElementById(botChatDiv);
 	const imgBot1 = new Image();
 	imgBot1.src = 'static/images/mini-bot.png';
 	imgBot1.className = "img-chat-bot"
-	const botUserElement = document.getElementById(botChatDiv);
 	const responseAddr = responseAddress(addressSpeech);
 	botUserElement.prepend(imgBot1, responseAddr);
 
