@@ -1,5 +1,5 @@
 
-// --------------- GOOGLE MAP ---------------
+// -------------------- GOOGLE MAP --------------------
 function initMap(locationCoordinates, div) {
 	// Initialize and add the map
 	const map = new google.maps.Map(document.getElementById(div), {
@@ -13,7 +13,7 @@ function initMap(locationCoordinates, div) {
 	});
 }
 
-// --------------- INITIALIZE RESPONSES ---------------
+// -------------------- INITIALIZE RESPONSES --------------------
 // user question
 function userQuestionSpeech(usrQuestion) {
 	return usrQuestion;
@@ -30,11 +30,11 @@ function userQuestion(usrQuestion) {
 function addressSpeech(status, address) {
 	switch (status) {
 		case "accurate":
-			return "Voici l'adresse: " + address + " !";
+			return "Voici l'adresse exacte: " + address + " !";
 		case "approximate":
-			return "C'est un peu vague";
+			return "C'est un peu vague mais voilà où ça se trouve: " + address;
 		case "not_found":
-			return "Désolé mais je ne trouve pas";
+			return "Désolé mais je ne connais pas cet endroit.";
 	}
 }
 
@@ -53,7 +53,7 @@ function extractSpeech(responseNb, extract) {
 		case "one":
 			return "Je connais une histoire sur ce quartier: " + extract;
 		case "none":
-			return "Désolé mais je ne connais pas du tout ce coin là !";
+			return "C'est rare, mais là je dois reconnaitre que je n'ai rien à te raconter sur ce coin là !";
 	}
 }
 
@@ -122,7 +122,7 @@ function displayWikiLink(wiki_url, botChatDiv) {
 	botUserElement.appendChild(responseLink);
 }
 
-// --------------- FINAL RESPONSES ---------------
+// -------------------- FINAL RESPONSES --------------------
 function botResponses(usrQuestion, addressSpeech, extractSpeech, wiki_url,
 					  locationCoordinates, mapsResp, wikiResp, mapsDiv,
 					  userChatDiv, botChatDiv) {
@@ -142,8 +142,7 @@ function botResponses(usrQuestion, addressSpeech, extractSpeech, wiki_url,
 	}
 }
 
-
-// --------------- AJAX ---------------
+// -------------------- AJAX --------------------
 const formElement = document.querySelector("form");
 
 $(document).ready(function() {
@@ -165,8 +164,7 @@ $(document).ready(function() {
 							 addressSpeech=aSpeech,
 							 extractSpeech=eSpeech,
 							 wiki_url=response['infos']['wiki_url'],
-							 locationCoordinates={'lat':response['infos']['maps_lat'],
-							 					  'lng':response['infos']['maps_lng']},
+							 locationCoordinates={'lat':response['infos']['maps_lat'],'lng':response['infos']['maps_lng']},
 							 mapsResp=response['infos']['maps_status'],
 							 wikiResp=response['infos']['wiki_response_nb'],
 							 mapsDiv="map",
