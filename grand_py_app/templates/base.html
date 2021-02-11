@@ -14,26 +14,26 @@
         <style>@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');</style>
         <style>@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');</style>
 
-        <link rel="icon" type="image/jpg" href="static/images/bot.jpg"/>
+        <link rel="icon" type="image/png" href="static/images/mini-bot.png"/>
 
         <title>GrandPyBot</title>
         {% block head %}{% endblock %}
     </head>
 
     <body>
-        {% block body %}{% endblock %}
-
-        <!-- FOOTER -->
-        <div class="footer">
-            <div class="footer-copyright">
-                <p>Application made with <i class="fas fa-heart"></i> by <strong>Florian Delage</strong></p>
-            </div>
-            <div class="footer-links">
-                <a href="https://github.com/flodelage" target="_blank"> <i class="fab fa-github"></i> </a>
-                <a href="https://www.linkedin.com/in/florian-delage" target="_blank"> <i class="fab fa-linkedin"></i> </a>
+        <div id="container">
+            {% block container %}{% endblock %}
+            <!-- FOOTER -->
+            <div class="footer">
+                <div class="footer-copyright">
+                    <p>Application made with <i class="fas fa-heart"></i> by <strong>Florian Delage</strong></p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/flodelage" target="_blank"> <i class="fab fa-github"></i> </a>
+                    <a href="https://www.linkedin.com/in/florian-delage" target="_blank"> <i class="fab fa-linkedin"></i> </a>
+                </div>
             </div>
         </div>
-
         <!-- Ajax -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

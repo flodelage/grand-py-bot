@@ -13,7 +13,7 @@ function initMap(locationCoordinates, div) {
 	});
 }
 
-// --------------- BOT'S RESPONSES ---------------
+// --------------- INITIALIZE RESPONSES ---------------
 // user question
 function userQuestionSpeech(usrQuestion) {
 	return usrQuestion;
@@ -83,31 +83,37 @@ function responseUrl(wiki_url) {
 	return responseUrl;
 }
 
-// all responses
-function botResponses(usrQuestion, addressSpeech, extractSpeech, wiki_url, locationCoordinates, mapsDiv, userChatDiv, botChatDiv) {
-	initMap(locationCoordinates, mapsDiv);
+// --------------- DISPLAY RESPONSES ---------------
+function displayUserQuestion(usrQuestion, userChatDiv) {
+		const chatUserElement = document.getElementById(userChatDiv);
+		const imgUser = new Image();
+		imgUser.src = 'static/images/user.png';
+		imgUser.className = "img-chat-user"
+		const userQuest = userQuestion(usrQuestion);
+		chatUserElement.prepend(imgUser, userQuest);
+}
 
-	const chatUserElement = document.getElementById(userChatDiv);
-	const imgUser = new Image();
-	imgUser.src = 'static/images/user.png';
-	imgUser.className = "img-chat-user"
-	const userQuest = userQuestion(usrQuestion);
-	chatUserElement.prepend(imgUser, userQuest);
-
+function displayAddress(addressSpeech, botChatDiv) {
 	const botUserElement = document.getElementById(botChatDiv);
 	const imgBot1 = new Image();
 	imgBot1.src = 'static/images/mini-bot.png';
 	imgBot1.className = "img-chat-bot"
 	const responseAddr = responseAddress(addressSpeech);
 	botUserElement.prepend(imgBot1, responseAddr);
+}
 
+function displayStory(extractSpeech, botChatDiv) {
+	const botUserElement = document.getElementById(botChatDiv);
 	const imgBot2 = new Image();
 	imgBot2.src = 'static/images/mini-bot.png';
 	imgBot2.className = "img-chat-bot"
 	const responseExtr = responseExtract(extractSpeech);
 	botUserElement.appendChild(imgBot2);
 	botUserElement.appendChild(responseExtr);
+}
 
+function displayWikiLink(wiki_url, botChatDiv) {
+	const botUserElement = document.getElementById(botChatDiv);
 	const imgBot3 = new Image();
 	imgBot3.src = 'static/images/mini-bot.png';
 	imgBot3.className = "img-chat-bot"
@@ -115,6 +121,27 @@ function botResponses(usrQuestion, addressSpeech, extractSpeech, wiki_url, locat
 	botUserElement.appendChild(imgBot3);
 	botUserElement.appendChild(responseLink);
 }
+
+// --------------- FINAL RESPONSES ---------------
+function botResponses(usrQuestion, addressSpeech, extractSpeech, wiki_url,
+					  locationCoordinates, mapsResp, wikiResp, mapsDiv,
+					  userChatDiv, botChatDiv) {
+	if (mapsResp == "not_found") {
+		displayUserQuestion(usrQuestion, userChatDiv);
+		displayAddress(addressSpeech, botChatDiv);
+	} else {
+		initMap(locationCoordinates, mapsDiv);
+		displayUserQuestion(usrQuestion, userChatDiv);
+		displayAddress(addressSpeech, botChatDiv);
+		if (wikiResp != "none") {
+			displayStory(extractSpeech, botChatDiv);
+			displayWikiLink(wiki_url, botChatDiv);
+		} else {
+			displayStory(extractSpeech, botChatDiv);
+		}
+	}
+}
+
 
 // --------------- AJAX ---------------
 const formElement = document.querySelector("form");
@@ -130,13 +157,18 @@ $(document).ready(function() {
 			data: $('form').serialize(), //la saisie est envoyée à la méthode de l'url /process
 			type: 'POST',
 			success: function(response) {
-				const aSpeech = addressSpeech(status=response['infos']['maps_status'],address=response['infos']['maps_address']);
-				const eSpeech = extractSpeech(responseNb=response['infos']['wiki_response_nb'],extract=response['infos']['wiki_extract']);
+				const aSpeech = addressSpeech(status=response['infos']['maps_status'],
+				                              address=response['infos']['maps_address']);
+				const eSpeech = extractSpeech(responseNb=response['infos']['wiki_response_nb'],
+											  extract=response['infos']['wiki_extract']);
 				botResponses(usrQuestion= response['infos']['user_question'],
 							 addressSpeech=aSpeech,
 							 extractSpeech=eSpeech,
 							 wiki_url=response['infos']['wiki_url'],
-							 locationCoordinates={'lat':response['infos']['maps_lat'],'lng':response['infos']['maps_lng']},
+							 locationCoordinates={'lat':response['infos']['maps_lat'],
+							 					  'lng':response['infos']['maps_lng']},
+							 mapsResp=response['infos']['maps_status'],
+							 wikiResp=response['infos']['wiki_response_nb'],
 							 mapsDiv="map",
 							 userChatDiv="chat-user",
 							 botChatDiv="chat-bot");

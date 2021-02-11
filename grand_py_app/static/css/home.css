@@ -1,4 +1,15 @@
 
+/******************** PAGE ********************/
+html, body {
+    height:100%;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+}
+
+
 /******************** BANNER ********************/
 .banner {
     display: flex;
@@ -190,7 +201,6 @@
     align-items: center;
     justify-content: space-between;
     background: #24292e;
-    border-top: 3px solid rgba(153, 205, 210);
     height: 100px;
     padding: 0px 50px;
     color: white;
@@ -203,6 +213,7 @@
 
 .footer-copyright p {
     font-family: 'Roboto', sans-serif;
+    margin: 0;
 }
 
 .footer-links a {
