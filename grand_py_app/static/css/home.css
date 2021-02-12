@@ -13,11 +13,11 @@ html, body {
 /******************** BANNER ********************/
 .banner {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     background: rgb(36, 41, 46);
     border-bottom: 3px solid rgba(153, 205, 210);
     padding: 1em;
-    width: 100%;
+    width: auto;
 }
 
 /* Header */
@@ -25,7 +25,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 20%;
+    width: 25%;
 }
 
 .banner-header h1 {
@@ -47,7 +47,7 @@ html, body {
 .banner-form {
     display: flex;
     align-items: flex-end;
-    width: 60%;
+    width: 75%;
 }
 
 .input-place {
@@ -75,19 +75,6 @@ html, body {
 
 .submit-button:hover {
     background: rgb(0, 227, 213);
-}
-
-/* Image */
-.banner-image {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 20%;
-}
-
-#banner-bot {
-    width: 5em;
-    height: 5em;
 }
 
 
