@@ -1,1 +1,1 @@
-web: gunicorn grand_py_app.wsgi --log-file -
+web: gunicorn grand_py_app:app
