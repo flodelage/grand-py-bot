@@ -4,7 +4,7 @@ from env_variables import FLASK_KEY, MAPS_KEY
 
 
 app.config.update(
-    DEBUG=True,
+    DEBUG=False,
     SECRET_KEY=FLASK_KEY,
     MAPS_KEY=MAPS_KEY
 )
