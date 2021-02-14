@@ -21,197 +21,133 @@ html, body {
 }
 
 
-/******************** BANNER ********************/
-.banner {
-    display: flex;
-    justify-content: flex-start;
-    background: rgb(36, 41, 46);
-    border-bottom: 3px solid rgba(153, 205, 210);
+/******************** NAVBAR ********************/
+#navbar {
+    background: #24292e !important;
+    border-bottom: 3px solid rgb(212, 232, 255);
     padding: 1em 5em;
-    width: auto;
 }
 @media screen and (max-width: 1024px) {
-    .banner {
+    #navbar {
         padding: 1em 2em;
     }
 }
 
-/* Header */
-.banner-header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 25%;
+.container-fluid {
+    padding: 0px 0px !important;
 }
-@media screen and (max-width: 768px) {
-    .banner-header  {
-        width: 20%;
-    }
-}
-@media screen and (max-width: 555px) {
-    .banner-header  {
-        width: 15%;
-    }
-}
-.banner-header h1 {
-    color: white;
+
+/* Brand */
+.navbar-brand h1 {
+    color: white !important;
     font-family: 'Jockey One', sans-serif;
     font-size: 2.5rem;
 }
-@media screen and (max-width: 1100px) {
-    .banner-header h1 {
-        display: none;
+
+@media screen and (max-width: 630px) {
+    .navbar-brand h1 {
+        font-size: 2rem;
     }
 }
-
-.banner-header img {
-    width: 4em;
-    height: 4em;
-}
-@media screen and (min-width: 1101px) {
-    .banner-header img {
-        display: none;
-    }
-}
-
-.banner-header a:hover {
-    text-decoration: none;
-}
-
-.banner-header p {
-    color: white;
+#navbar p {
+    color: white !important;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     font-size: 1rem;
 }
-@media screen and (max-width: 1100px) {
-    .banner-header p {
+@media screen and (max-width: 480px) {
+    #navbar p {
         display: none;
     }
 }
 
 /* Form */
-.banner-form {
-    display: flex;
-    align-items: flex-end;
-    width: 75%;
+#input-place {
+    font-size: 0.8rem;
+    width: 35rem;
+}
+@media screen and (max-width: 1174px) {
+    #input-place {
+        font-size: 0.8rem;
+        width: 25rem;
+    }
+}
+@media screen and (max-width: 800px) {
+    #input-place {
+        font-size: 0.7rem;
+        width: 20rem;
+    }
+}
+@media screen and (max-width: 700px) {
+    #input-place {
+        font-size: 0.7rem;
+        width: 15rem;
+    }
+}
+@media screen and (max-width: 630px) {
+    #input-place {
+        font-size: 0.6rem;
+        width: 10rem;
+    }
+}
+@media screen and (max-width: 530px) {
+    #input-place {
+        font-size: 0.6rem;
+        width: 8rem;
+    }
+}
+@media screen and (max-width: 480px) {
+    #input-place {
+        font-size: 0.6rem;
+        width: 20rem;
+    }
+}
+@media screen and (max-width: 400px) {
+    #input-place {
+        font-size: 0.6rem;
+        width: 15rem;
+    }
+}
+@media screen and (max-width: 330px) {
+    #input-place {
+        font-size: 0.6rem;
+        width: 10rem;
+    }
+}
+@media screen and (max-width: 265px) {
+    #input-place {
+        font-size: 0.6rem;
+        width: 7rem;
+    }
 }
 
-.input-place {
-    background-color: white;
-    width: 650px;
-    height: 45px;
-    border-radius: 0.2em;
-    border:0.16em solid rgba(255,255,255,0);
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    color: #212529
+#submit-button {
+    border-color: rgb(212, 232, 255);
+    color: rgb(212, 232, 255);
 }
-@media screen and (max-width: 1200px) {
-    .input-place {
-        width: 550px;
-        height: 43px;
-    }
+#submit-button:hover {
+    border-color: black;
+    color: black;
+    background-color: rgb(212, 232, 255);
 }
-@media screen and (max-width: 1024px) {
-    .input-place {
-        width: 500px;
-        height: 38px;
-    }
+#submit-button::after {
+    border-color: white;
+    color: white;
+    background-color: rgb(212, 232, 255);
 }
-@media screen and (max-width: 900px) {
-    .input-place {
-        width: 420px;
-        height: 38px;
-    }
-}
-@media screen and (max-width: 768px) {
-    .input-place {
-        width: 360px;
-        height: 35px;
-        font-size: 0.8rem;
-    }
-}
-@media screen and (max-width: 640px) {
-    .input-place {
-        width: 290px;
-        height: 35px;
-        font-size: 0.8rem;
-    }
-}
-@media screen and (max-width: 570px) {
-    .input-place {
-        width: 240px;
-        height: 35px;
-        font-size: 0.8rem;
-    }
-}
-@media screen and (max-width: 555px) {
-    .input-place {
-        width: 370px;
-        height: 35px;
-    }
-}
-@media screen and (max-width: 550px) {
-    .input-place {
-        width: 350px;
-        height: 35px;
-    }
-}
-.submit-button {
-    background: rgb(153, 205, 210);
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    color : white;
-    width: 85px;
-    height: 47px;
-    border-radius: 0.2em;
-    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
-    margin: 0;
-    text-decoration:none;
-}
-@media screen and (max-width: 1200px) {
-    .submit-button {
-        width: 80px;
-        height: 45px;
-    }
-}
-@media screen and (max-width: 1024px) {
-    .submit-button {
-        width: 75px;
-        height: 40px;
-    }
-}
-@media screen and (max-width: 900px) {
-    .submit-button {
-        width: 70px;
-        height: 40px;
-    }
-}
-@media screen and (max-width: 768px) {
-    .submit-button {
-        width: 70px;
-        height: 37px;
-        font-size: 0.8rem;
-    }
-}
-.submit-button:hover {
-    background: rgb(0, 227, 213);
-}
-
 
 /******************** CHAT ********************/
 #chat {
     display: flex;
     flex-direction: column;
-    padding: 2em 5em;
-    background: rgb(250,250,250);
+    padding: 10em 5em 4em 5em;
+    background: white;
     font-size: 1rem;
+    overflow: auto;
 }
 @media screen and (max-width: 1024px) {
     #chat {
-        padding: 1em 2em;
+        padding: 9em 2em 4em 2em;
     }
 }
 /* Chat user */
@@ -225,7 +161,7 @@ html, body {
 .chat-bubble-user {
     position: relative;
     max-width: 50em;
-    background-color: rgb(255, 255, 255);
+    background-color: #B8F0C8;
     margin: 1.1em 0em 2em 0em;
     padding: 1.125em 1.5em;
     font-family: 'Roboto', sans-serif;
@@ -243,13 +179,19 @@ html, body {
     left: 1.5em;
     border: .75rem solid transparent;
     border-top: none;
-    border-bottom-color: rgb(255, 255, 255);
+    border-bottom-color: #B8F0C8;
     filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
 }
 
 .img-chat-user {
     height: 3em;
     width: 3em;
+}
+@media screen and (max-width: 480px) {
+    .img-chat-user {
+        height: 2em;
+        width: 2em;
+    }
 }
 
 /* Chat bot */
@@ -263,7 +205,7 @@ html, body {
 .chat-bubble-bot {
     position: relative;
     max-width: 50em;
-    background-color: rgba(153, 205, 210, 0.8);
+    background-color: rgb(212, 232, 255);
     margin: 0.5em 0em 2em 0em;
     padding: 1.125em 1.5em;
     font-family: 'Roboto', sans-serif;
@@ -281,7 +223,7 @@ html, body {
     right: 1.5em;
     border: .75rem solid transparent;
     border-top: none;
-    border-bottom-color: rgba(153, 205, 210, 0.8);
+    border-bottom-color: rgb(212, 232, 255);
     filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
 }
 
@@ -298,6 +240,12 @@ html, body {
 .img-chat-bot {
     height: 5em;
     width: 5em;
+}
+@media screen and (max-width: 480px) {
+    .img-chat-bot {
+        height: 4em;
+        width: 4em;
+    }
 }
 
 /* Map */
@@ -370,35 +318,28 @@ html, body {
     #map {
         margin: 2em auto;
         height: 166px;
-        width: 250px;
+        width: 260px;
     }
 }
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 350px) {
     #map {
         margin: 2em auto;
         height: 150px;
         width: 200px;
     }
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 270px) {
     #map {
         margin: 2em auto;
         height: 150px;
-        width: 170px;
+        width: 180px;
     }
 }
-@media screen and (max-width: 310px) {
+@media screen and (max-width: 240px) {
     #map {
         margin: 2em auto;
         height: 150px;
         width: 150px;
-    }
-}
-@media screen and (max-width: 280px) {
-    #map {
-        margin: 2em auto;
-        height: 150px;
-        width: 130px;
     }
 }
 /* Loader */
@@ -409,13 +350,20 @@ html, body {
     align-items: center;
     justify-content: space-between;
     background: #24292e;
-    height: 100px;
+    height: 70px;
     padding: 1em 5em;
     color: white;
 }
 @media screen and (max-width: 1024px) {
     .footer {
         padding: 1em 2em;
+    }
+}
+@media screen and (max-width: 480px) {
+    .footer {
+        display: flex;
+        flex-direction: column;
+        height: 70px;
     }
 }
 .footer-links {
@@ -428,6 +376,16 @@ html, body {
     margin: 0;
     font-size: 1rem;
 }
+@media screen and (max-width: 480px) {
+    .footer-copyright p {
+        font-size: 0.8rem;
+    }
+}
+@media screen and (max-width: 280px) {
+    .footer-copyright p {
+        font-size: 0.5rem;
+    }
+}
 
 .footer-links a {
     color: white;
@@ -435,9 +393,19 @@ html, body {
     font-size: 1.5rem;
     padding: 0px 10px;
 }
+@media screen and (max-width: 480px) {
+    .footer-links a {
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 280px) {
+    .footer-links a {
+        font-size: 1rem;
+    }
+}
 
 .footer-links a:hover {
-    color: rgba(153, 205, 210);
+    color: rgb(212, 232, 255);
 }
 
 .footer .fa-heart {
