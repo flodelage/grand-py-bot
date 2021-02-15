@@ -1,14 +1,11 @@
 
 import requests
 
-# from env_variables import MAPS_KEY
-
 
 class GoogleMaps():
 
     def __init__(self):
-        # self.key = MAPS_KEY
-        self.key = "AIzaSyAltnzowbiyt85fq95bSJEZXcg93hgR8vA"
+        self.key = API_KEY
 
     def request_get(self, address):
         address_splited = address.split() # ['55', 'rue', 'faubourg', 'saint', 'honoré', 'paris']
