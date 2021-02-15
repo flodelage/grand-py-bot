@@ -83,7 +83,7 @@ function responseUrl(wiki_url) {
 	return responseUrl;
 }
 
-// --------------- DISPLAY RESPONSES ---------------
+// -------------------- DISPLAY RESPONSES --------------------
 function displayUserQuestion(usrQuestion, userChatDiv) {
 		const chatUserElement = document.getElementById(userChatDiv);
 		const imgUser = new Image();
@@ -122,24 +122,35 @@ function displayWikiLink(wiki_url, botChatDiv) {
 	botUserElement.appendChild(responseLink);
 }
 
+// -------------------- LOADER --------------------
+function displayLoader(botChatDiv) {
+	const botUserElement = document.getElementById(botChatDiv);
+	const loader = document.createElement("div");
+	loader.className = "loader";
+	loader.setAttribute("id","loader");
+	botUserElement.prepend(loader);
+}
+
 // -------------------- FINAL RESPONSES --------------------
 function botResponses(usrQuestion, addressSpeech, extractSpeech, wiki_url,
 					  locationCoordinates, mapsResp, wikiResp, mapsDiv,
 					  userChatDiv, botChatDiv) {
-	if (mapsResp == "not_found") {
-		displayUserQuestion(usrQuestion, userChatDiv);
-		displayAddress(addressSpeech, botChatDiv);
-	} else {
-		initMap(locationCoordinates, mapsDiv);
-		displayUserQuestion(usrQuestion, userChatDiv);
-		displayAddress(addressSpeech, botChatDiv);
-		if (wikiResp != "none") {
-			displayStory(extractSpeech, botChatDiv);
-			displayWikiLink(wiki_url, botChatDiv);
+	setTimeout(function() {
+		if (mapsResp == "not_found") {
+			displayUserQuestion(usrQuestion, userChatDiv);
+			displayAddress(addressSpeech, botChatDiv);
 		} else {
-			displayStory(extractSpeech, botChatDiv);
+			initMap(locationCoordinates, mapsDiv);
+			displayUserQuestion(usrQuestion, userChatDiv);
+			displayAddress(addressSpeech, botChatDiv);
+			if (wikiResp != "none") {
+				displayStory(extractSpeech, botChatDiv);
+				displayWikiLink(wiki_url, botChatDiv);
+			} else {
+				displayStory(extractSpeech, botChatDiv);
+			}
 		}
-	}
+	}, 2000);
 }
 
 // -------------------- AJAX --------------------
@@ -149,17 +160,18 @@ $(document).ready(function() {
 
 	formElement.addEventListener("submit", function(event) { //quand l utilisateur soumet sa saisie
 
-		var place = $('#input_place').val(); //la saisie est stockée
-
 		$.ajax({
 			url: '/process',
-			data: $('form').serialize(), //la saisie est envoyée à la méthode de l'url /process
+			data: $('form').serialize(),
 			type: 'POST',
 			success: function(response) {
+				displayLoader(botChatDiv="chat-bot");
+
 				const aSpeech = addressSpeech(status=response['infos']['maps_status'],
 				                              address=response['infos']['maps_address']);
 				const eSpeech = extractSpeech(responseNb=response['infos']['wiki_response_nb'],
 											  extract=response['infos']['wiki_extract']);
+
 				botResponses(usrQuestion= response['infos']['user_question'],
 							 addressSpeech=aSpeech,
 							 extractSpeech=eSpeech,
@@ -170,6 +182,9 @@ $(document).ready(function() {
 							 mapsDiv="map",
 							 userChatDiv="chat-user",
 							 botChatDiv="chat-bot");
+
+				setTimeout(function() {$('#loader').addClass("hide-loader");}, 2000);
+
 			},
 			error: function(error) {
 				console.log(error);

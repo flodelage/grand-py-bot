@@ -333,7 +333,32 @@ html, body {
         width: 150px;
     }
 }
+
 /* Loader */
+.loader {
+    border: 16px solid rgb(218, 218, 218);
+    border-top: 16px solid #24292e;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 0.7s linear infinite;
+    margin: 10rem 17rem 0rem 0rem;
+ }
+ @media screen and (max-width: 800px) {
+    .loader {
+        margin: 14rem auto;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hide-loader{
+    display:none;
+    }
+
 
 /******************** FOOTER ********************/
 .footer {
