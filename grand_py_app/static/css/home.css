@@ -331,17 +331,26 @@ html, body {
 
 /* Loader */
 .loader {
-    border: 16px solid rgb(218, 218, 218);
-    border-top: 16px solid #24292e;
+    border: 12px solid rgb(218, 218, 218);
+    border-top: 12px solid #24292e;
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 96px;
+    height: 96px;
     animation: spin 0.7s linear infinite;
     margin: 2rem 15rem 0rem 0rem;
  }
  @media screen and (max-width: 800px) {
     .loader {
         margin: 2rem auto;
+        width: 72px;
+        height: 72px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .loader {
+        margin: 2rem auto;
+        width: 56px;
+        height: 56px;
     }
 }
 
