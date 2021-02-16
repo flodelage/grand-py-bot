@@ -2,12 +2,7 @@
 /******************** PAGE ********************/
 html, body {
     height:100%;
-    font-size: 18px;
-}
-@media screen and (max-width: 1024px) {
-    html, body {
-        font-size: 16px;
-    }
+    font-size: 16px;
 }
 @media screen and (max-width: 480px) {
     html, body {
@@ -342,11 +337,11 @@ html, body {
     width: 120px;
     height: 120px;
     animation: spin 0.7s linear infinite;
-    margin: 10rem 17rem 0rem 0rem;
+    margin: 2rem 15rem 0rem 0rem;
  }
  @media screen and (max-width: 800px) {
     .loader {
-        margin: 14rem auto;
+        margin: 2rem auto;
     }
 }
 

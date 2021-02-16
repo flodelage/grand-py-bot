@@ -135,22 +135,22 @@ function displayLoader(botChatDiv) {
 function botResponses(usrQuestion, addressSpeech, extractSpeech, wiki_url,
 					  locationCoordinates, mapsResp, wikiResp, mapsDiv,
 					  userChatDiv, botChatDiv) {
-	setTimeout(function() {
+
+		displayLoader(botChatDiv);
 		if (mapsResp == "not_found") {
 			displayUserQuestion(usrQuestion, userChatDiv);
-			displayAddress(addressSpeech, botChatDiv);
+			setTimeout(function() {displayAddress(addressSpeech, botChatDiv);},1500);
 		} else {
-			initMap(locationCoordinates, mapsDiv);
 			displayUserQuestion(usrQuestion, userChatDiv);
-			displayAddress(addressSpeech, botChatDiv);
+			setTimeout(function() {displayAddress(addressSpeech, botChatDiv);},1500);
+			setTimeout(function() {initMap(locationCoordinates, mapsDiv);},2500);
 			if (wikiResp != "none") {
-				displayStory(extractSpeech, botChatDiv);
-				displayWikiLink(wiki_url, botChatDiv);
+				setTimeout(function() {displayStory(extractSpeech, botChatDiv);},3500);
+				setTimeout(function() {displayWikiLink(wiki_url, botChatDiv);},4500);
 			} else {
-				displayStory(extractSpeech, botChatDiv);
+				setTimeout(function() {displayStory(extractSpeech, botChatDiv);},3500);
 			}
 		}
-	}, 2000);
 }
 
 // -------------------- AJAX --------------------
@@ -165,7 +165,6 @@ $(document).ready(function() {
 			data: $('form').serialize(),
 			type: 'POST',
 			success: function(response) {
-				displayLoader(botChatDiv="chat-bot");
 
 				const aSpeech = addressSpeech(status=response['infos']['maps_status'],
 				                              address=response['infos']['maps_address']);
@@ -183,7 +182,7 @@ $(document).ready(function() {
 							 userChatDiv="chat-user",
 							 botChatDiv="chat-bot");
 
-				setTimeout(function() {$('#loader').addClass("hide-loader");}, 2000);
+				setTimeout(function() {$('#loader').addClass("hide-loader");}, 1500);
 
 			},
 			error: function(error) {
