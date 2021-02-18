@@ -28,7 +28,7 @@ The web page should contain the following elements:
 
 ## Getting started
 1. Clone the repository:
-> git clone https://github.com/flodelage/grand-py-bot.git
+``` git clone https://github.com/flodelage/grand-py-bot.git ```
 
 2. Create virtual environnement:
 > python3 -m venv env
