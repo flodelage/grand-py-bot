@@ -28,16 +28,24 @@ The web page should contain the following elements:
 
 ## Getting started
 1. Clone the repository:  
-``` git clone https://github.com/flodelage/grand-py-bot.git ```
+```
+git clone https://github.com/flodelage/grand-py-bot.git
+```
 
 2. Create virtual environnement:  
-``` python3 -m venv env ```
+```
+python3 -m venv env
+```
 
 3. Activate virtual environnement:  
-``` source env/bin/activate ```
+```
+source env/bin/activate
+```
 
 4. Install requirements:  
-``` pip install -r requirements.txt ```
+```
+pip install -r requirements.txt
+```
 
 5. Update config.py:  
 MAPS_GEOCODING_KEY = "your_google_maps_geocoding_key"  
@@ -51,10 +59,16 @@ export FLASK_ENV=development
 ```
 
 7. Run flask in local:  
-``` flask run ```
+```
+flask run
+```
 
 8. Go to your browser in order to access the localhost at the URL:  
-``` http://127.0.0.1:5000/ ```
+```
+http://127.0.0.1:5000/
+```
 
 ## Running tests
-``` pytest -v ```
+```
+pytest -v
+```
