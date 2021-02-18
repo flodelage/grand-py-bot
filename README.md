@@ -45,8 +45,10 @@ MAPS_JS_KEY = "your_google_maps_js_key"
 FLASK_KEY = "your_flask_personal_key"  
 
 6. Set Flask environement variables:  
-``` export FLASK_APP=run.py
-    export FLASK_ENV=development ```
+```
+export FLASK_APP=run.py
+export FLASK_ENV=development
+```
 
 7. Run flask in local:  
 ``` flask run ```
