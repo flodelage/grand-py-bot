@@ -1,5 +1,5 @@
 
-// -------------------- GOOGLE MAP --------------------
+// -------------------- GOOGLE MAPS --------------------
 function initMap(locationCoordinates, div) {
 	// Initialize and add the map
 	const map = new google.maps.Map(document.getElementById(div), {
@@ -158,7 +158,7 @@ const formElement = document.querySelector("form");
 
 $(document).ready(function() {
 
-	formElement.addEventListener("submit", function(event) { //quand l utilisateur soumet sa saisie
+	formElement.addEventListener("submit", function(event) {
 
 		$.ajax({
 			url: '/process',
