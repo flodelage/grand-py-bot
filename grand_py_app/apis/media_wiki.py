@@ -28,9 +28,9 @@ class MediaWiki():
         request = requests.get("https://fr.wikipedia.org/w/api.php", params=payload)
         return request.json()
 
-    def get_story(self, location):
+    def sort_story_infos(self, json):
         """
-        Retrieves and returns a random story (if many available) from the API response
+        Sort infos and returns a random story (if many available) from a json
         """
         location_infos = {
             "title": "",
@@ -39,7 +39,7 @@ class MediaWiki():
             "response_nb": ""
         }
 
-        data = self.__request_get(location) # Call the API and store Json data
+        data = json
 
         try:
             # if at least one result is found, the location informations dict is updated
@@ -55,3 +55,11 @@ class MediaWiki():
             # if no result is found by the API
             location_infos["response_nb"] = "none"
         return location_infos
+
+    def get_story(self, location):
+        """
+        Uses the methods allowing to make the call to the API,
+        then to sort and retrieve the necessary information
+        """
+        json = self.__request_get(location) # Call the API and store Json data
+        return self.sort_story_infos(json)
