@@ -64,4 +64,4 @@ class GoogleMaps():
         then to sort and retrieve the necessary information
         """
         json = self.request_get(address) # Call the API and store Json data
-        return sort_location_infos(json)
+        return self.sort_location_infos(json)
