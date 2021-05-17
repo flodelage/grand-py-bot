@@ -27,43 +27,43 @@ The web page should contain the following elements:
 * There isn't database, nothing is saved. If the user reloads the webpage, all the history is lost.
 
 ## Getting started
-1. Clone the repository:  
+1. Clone the repository:
 ```
 git clone https://github.com/flodelage/grand-py-bot.git
 ```
 
-2. Create virtual environnement:  
+2. Create virtual environnement:
 ```
 python3 -m venv env
 ```
 
-3. Activate virtual environnement:  
+3. Activate virtual environnement:
 ```
 source env/bin/activate
 ```
 
-4. Install requirements:  
+4. Install requirements:
 ```
 pip install -r requirements.txt
 ```
 
-5. Update config.py:  
-MAPS_GEOCODING_KEY = "your_google_maps_geocoding_key"  
-MAPS_JS_KEY = "your_google_maps_js_key"  
-FLASK_KEY = "your_flask_personal_key"  
+5. Update config.py:
+MAPS_GEOCODING_KEY = "your_google_maps_geocoding_key"
+MAPS_JS_KEY = "your_google_maps_js_key"
+FLASK_KEY = "your_flask_personal_key"
 
-6. Set Flask environement variables:  
+6. Set Flask environement variables:
 ```
 export FLASK_APP=run.py
 export FLASK_ENV=development
 ```
 
-7. Run flask in local:  
+7. Run flask in local:
 ```
 flask run
 ```
 
-8. Go to your browser in order to access the localhost at the URL:  
+8. Go to your browser in order to access the localhost at the URL:
 ```
 http://127.0.0.1:5000/
 ```

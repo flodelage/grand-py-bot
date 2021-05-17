@@ -1,6 +1,7 @@
 
 from grand_py_app.utils.question_cleaner import QuestionCleaner
 
+
 class TestQuestionCleaner:
 
     cleaner = QuestionCleaner()

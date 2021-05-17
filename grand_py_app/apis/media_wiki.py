@@ -3,11 +3,11 @@ import requests
 import random
 
 
-"""
-Responsability: Call the Wikipedia's API in order to retrieve a story
-about a place from geographic coordinates
-"""
 class MediaWiki():
+    """
+    Responsability: Call the Wikipedia's API in order to retrieve a story
+    about a place from geographic coordinates
+    """
 
     def __request_get(self, location):
         """
@@ -61,5 +61,5 @@ class MediaWiki():
         Uses the methods allowing to make the call to the API,
         then to sort and retrieve the necessary information
         """
-        json = self.__request_get(location) # Call the API and store Json data
+        json = self.__request_get(location)  # Call the API and store Json data
         return self.sort_story_infos(json)

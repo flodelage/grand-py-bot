@@ -171,16 +171,18 @@ $(document).ready(function() {
 				const eSpeech = extractSpeech(responseNb=response['infos']['wiki_response_nb'],
 											  extract=response['infos']['wiki_extract']);
 
-				botResponses(usrQuestion= response['infos']['user_question'],
-							 addressSpeech=aSpeech,
-							 extractSpeech=eSpeech,
-							 wiki_url=response['infos']['wiki_url'],
-							 locationCoordinates={'lat':response['infos']['maps_lat'],'lng':response['infos']['maps_lng']},
-							 mapsResp=response['infos']['maps_status'],
-							 wikiResp=response['infos']['wiki_response_nb'],
-							 mapsDiv="map",
-							 userChatDiv="chat-user",
-							 botChatDiv="chat-bot");
+				botResponses(
+					usrQuestion= response['infos']['user_question'],
+					addressSpeech=aSpeech,
+					extractSpeech=eSpeech,
+					wiki_url=response['infos']['wiki_url'],
+					locationCoordinates={'lat':response['infos']['maps_lat'],'lng':response['infos']['maps_lng']},
+					mapsResp=response['infos']['maps_status'],
+					wikiResp=response['infos']['wiki_response_nb'],
+					mapsDiv="map",
+					userChatDiv="chat-user",
+					botChatDiv="chat-bot"
+				);
 
 				setTimeout(function() {$('#loader').addClass("hide-loader");}, 1500);
 

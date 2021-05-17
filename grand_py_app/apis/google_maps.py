@@ -28,18 +28,18 @@ class GoogleMaps():
         request = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json", params=payload)
         return request.json()
 
-    def sort_location_infos(self, json):
+    def get_location(self, address):
         """
         Sort and get the necessary infos (address, geographic coordinates, status) from a json element
         """
+        data = self.request_get(address)  # Call the API and store Json data
+
         location = {
             'address': "",
             'lat': 0,
             'lng': 0,
             'status': ""
         }
-
-        data = json
 
         try:
             result = data["results"][0]
@@ -57,11 +57,3 @@ class GoogleMaps():
             # if no result is found by the API
             location["status"] = "not_found"
         return location
-
-    def get_location(self, address):
-        """
-        Uses the methods allowing to make the call to the API,
-        then to sort and retrieve the necessary information
-        """
-        json = self.request_get(address) # Call the API and store Json data
-        return self.sort_location_infos(json)
