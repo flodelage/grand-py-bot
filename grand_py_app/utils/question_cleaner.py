@@ -2,12 +2,12 @@
 from grand_py_app.utils.constants import COMMON_WORDS, GREETINGS, PUNCTUATIONS
 
 
-"""
-Responsability: Clean up the user's question.
-Remove any unnecessary words and/or characters in order to keep
-only the desired place to find.
-"""
 class QuestionCleaner:
+    """
+    Responsability: Clean up the user's question.
+    Remove any unnecessary words and/or characters in order to keep
+    only the desired place to find.
+    """
 
     def remove_punctuations(self, question):
         """

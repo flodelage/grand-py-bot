@@ -3,11 +3,11 @@ from config import MAPS_GEOCODING_KEY
 import requests
 
 
-"""
-Responsability: Call the Google's API in order to retrieve address
-and geographic coordinates from the place requested by the user
-"""
 class GoogleMaps():
+    """
+    Responsability: Call the Google's API in order to retrieve address
+    and geographic coordinates from the place requested by the user
+    """
 
     def request_get(self, address):
         """
@@ -20,16 +20,17 @@ class GoogleMaps():
         #  ex: '55+rue+faubourg+saint+honoré+paris'
 
         payload = {
-            "address" : address_for_url,
-            "key" : MAPS_GEOCODING_KEY
+            "address": address_for_url,
+            "key": MAPS_GEOCODING_KEY
         }
 
-        request = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json", params=payload)
+        request = requests.get("https://maps.googleapis.com/maps/api/geocode/json", params=payload)
         return request.json()
 
     def get_location(self, address):
         """
-        Sort and get the necessary infos (address, geographic coordinates, status) from a json element
+        Sort and get the necessary infos (address, geographic
+        coordinates, status) from a json element
         """
         data = self.request_get(address)
 

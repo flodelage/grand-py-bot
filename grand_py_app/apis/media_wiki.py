@@ -21,9 +21,9 @@ class MediaWiki():
             "ggscoord": f"{location['lat']}|{location['lng']}",
             "ggslimit": "5",
             "ggsradius": "1000",
-            "prop" : "extracts",
-            "exintro" : "",
-            "explaintext" : ""
+            "prop": "extracts",
+            "exintro": "",
+            "explaintext": ""
         }
 
         request = requests.get("https://fr.wikipedia.org/w/api.php", params=payload)
@@ -43,7 +43,8 @@ class MediaWiki():
         }
 
         try:
-            # if at least one result is found, the location informations dict is updated
+            # if at least one result is found, the location
+            # informations dict is updated
             pages = data["query"]["pages"]
             random_page_id = random.choices(list(pages.keys()))[0]
             random_page = pages[random_page_id]
