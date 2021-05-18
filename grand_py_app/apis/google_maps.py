@@ -14,8 +14,10 @@ class GoogleMaps():
         Sends "get request" to the the Google Maps'API and returns Json data.
         Gives a place or an address as parameters.
         """
-        address_splited = address.split() # ['55', 'rue', 'faubourg', 'saint', 'honoré', 'paris']
-        address_for_url = "+".join(address_splited) # '55+rue+faubourg+saint+honoré+paris'
+        address_splited = address.split()
+        #  ex: ['55', 'rue', 'faubourg', 'saint', 'honoré', 'paris']
+        address_for_url = "+".join(address_splited)
+        #  ex: '55+rue+faubourg+saint+honoré+paris'
 
         payload = {
             "address" : address_for_url,
@@ -29,7 +31,7 @@ class GoogleMaps():
         """
         Sort and get the necessary infos (address, geographic coordinates, status) from a json element
         """
-        data = self.request_get(address)  # Call the API and store Json data
+        data = self.request_get(address)
 
         location = {
             'address': "",

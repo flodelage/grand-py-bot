@@ -9,7 +9,7 @@ class MediaWiki():
     about a place from geographic coordinates
     """
 
-    def __request_get(self, location):
+    def request_get(self, location):
         """
         Sends "get request" to the the Wikipedia's API and returns Json data.
         Gives geographic coordinates as main parameter.
@@ -25,21 +25,22 @@ class MediaWiki():
             "exintro" : "",
             "explaintext" : ""
         }
+
         request = requests.get("https://fr.wikipedia.org/w/api.php", params=payload)
         return request.json()
 
-    def sort_story_infos(self, json):
+    def get_story(self, location):
         """
         Sort infos and returns a random story (if many available) from a json
         """
+        data = self.request_get(location)
+
         location_infos = {
             "title": "",
             "extract": "",
             "wiki_url": "",
             "response_nb": ""
         }
-
-        data = json
 
         try:
             # if at least one result is found, the location informations dict is updated
@@ -55,11 +56,3 @@ class MediaWiki():
             # if no result is found by the API
             location_infos["response_nb"] = "none"
         return location_infos
-
-    def get_story(self, location):
-        """
-        Uses the methods allowing to make the call to the API,
-        then to sort and retrieve the necessary information
-        """
-        json = self.__request_get(location)  # Call the API and store Json data
-        return self.sort_story_infos(json)
