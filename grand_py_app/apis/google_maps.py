@@ -9,9 +9,6 @@ and geographic coordinates from the place requested by the user
 """
 class GoogleMaps():
 
-    def __init__(self):
-        self.key = MAPS_GEOCODING_KEY
-
     def request_get(self, address):
         """
         Sends "get request" to the the Google Maps'API and returns Json data.
@@ -22,7 +19,7 @@ class GoogleMaps():
 
         payload = {
             "address" : address_for_url,
-            "key" : self.key
+            "key" : MAPS_GEOCODING_KEY
         }
 
         request = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json", params=payload)
