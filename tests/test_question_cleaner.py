@@ -7,8 +7,8 @@ class TestQuestionCleaner:
     cleaner = QuestionCleaner()
 
     def test_remove_punctuations(self):
-        question = """Hey!How are you doing?(Parenthesis)-[Array];{Curly brackets}:"This is a test",'clearly'.<>/@#$%^&*_~"""
-        assert self.cleaner.remove_punctuations(question) == """Hey How are you doing  Parenthesis   Array   Curly brackets   This is a test   clearly              """
+        question = """Hey!How are you doing?(Parenthesis)-[Array];{Curly brackets}:"This is a test",'clearly'.<>@#$%^&*_~"""
+        assert self.cleaner.remove_punctuations(question) == """Hey How are you doing  Parenthesis   Array   Curly brackets   This is a test   clearly             """
 
     def test_remove_stop_words(self):
         question = "Salut bot tu vas bien ? Parle moi de la Tour Eiffel stp ?!"
