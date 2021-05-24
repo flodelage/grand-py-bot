@@ -1,6 +1,6 @@
 
 from flask import Flask, render_template, request, jsonify
-from form import QuestionForm
+from grand_py_app.form import QuestionForm
 from grand_py_app.utils.response import Response
 
 
