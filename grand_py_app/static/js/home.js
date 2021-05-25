@@ -1,7 +1,11 @@
 
 // -------------------- GOOGLE MAPS --------------------
 function initMap(locationCoordinates, div) {
-	// Initialize and add the map
+	/**
+ 	 * displays the map in the given div
+	 * from the given coordinates
+ 	 */
+	// Initialize and add the map to the given div
 	const map = new google.maps.Map(document.getElementById(div), {
 	  zoom: 17,
 	  center: locationCoordinates,
@@ -14,20 +18,30 @@ function initMap(locationCoordinates, div) {
 }
 
 // -------------------- INITIALIZE RESPONSES --------------------
-// user question
+// --- user question ---
 function userQuestionSpeech(usrQuestion) {
+	/**
+	 * return the user question
+ 	 */
 	return usrQuestion;
 }
 
 function userQuestion(usrQuestion) {
+	/**
+	 * Creates <p> and adds the user question
+ 	 */
 	const userQuestion = document.createElement("p");
 	userQuestion.className = "chat-bubble-user";
 	userQuestion.textContent = usrQuestion;
 	return userQuestion;
 }
 
-// address
+// --- address ---
 function addressSpeech(status, address) {
+	/**
+	 * Determines the bot's response about the address
+	 * based on the API return
+ 	 */
 	switch (status) {
 		case "accurate":
 			return "Voici l'adresse exacte: " + address + " !";
@@ -39,14 +53,21 @@ function addressSpeech(status, address) {
 }
 
 function responseAddress(adrSpeech) {
+	/**
+	 * Creates <p> and adds the response about the story
+ 	 */
 	const responseAddress = document.createElement("p");
 	responseAddress.className = "chat-bubble-bot";
 	responseAddress.textContent = adrSpeech;
 	return responseAddress;
 }
 
-// extract
+// --- extract ---
 function extractSpeech(responseNb, extract) {
+	/**
+	 * Determines the bot's response about the story
+	 * based on the API return
+ 	 */
 	switch (responseNb) {
 		case "many":
 			return "Je connais pas mal d'histoires sur ce quartier, par exemple: " + extract;
@@ -58,18 +79,28 @@ function extractSpeech(responseNb, extract) {
 }
 
 function responseExtract(extrSpeech) {
+	/**
+	 * Creates <p> and adds the response about the story
+ 	 */
 	const responseExtract = document.createElement("p");
 	responseExtract.className = "chat-bubble-bot";
 	responseExtract.textContent = extrSpeech;
 	return responseExtract;
 }
 
-// wiki link
+// --- wiki link ---
 function wikiSpeech() {
+	/**
+	 * return the beginning of the answer about the url
+ 	 */
 	return "Si jamais tu veux en savoir plus, n'hésite pas à cliquer sur ce lien vers ";
 }
 
 function responseUrl(wiki_url) {
+	/**
+	 * Creates <p> and adds the response about the url
+	 * Creates <a> which sends to the url on a new web page
+ 	 */
 	const responseUrl = document.createElement("p");
 	responseUrl.className = "chat-bubble-bot";
 	const urlLink = document.createElement("a");
@@ -84,16 +115,24 @@ function responseUrl(wiki_url) {
 }
 
 // -------------------- DISPLAY RESPONSES --------------------
+// --- user question ---
 function displayUserQuestion(usrQuestion, userChatDiv) {
-		const chatUserElement = document.getElementById(userChatDiv);
-		const imgUser = new Image();
-		imgUser.src = 'static/images/user.png';
-		imgUser.className = "img-chat-user"
-		const userQuest = userQuestion(usrQuestion);
-		chatUserElement.prepend(imgUser, userQuest);
+	/**
+	 * add the user's icon and question into the dedicated div
+ 	 */
+	const chatUserElement = document.getElementById(userChatDiv);
+	const imgUser = new Image();
+	imgUser.src = 'static/images/user.png';
+	imgUser.className = "img-chat-user"
+	const userQuest = userQuestion(usrQuestion);
+	chatUserElement.prepend(imgUser, userQuest);
 }
 
+// --- address ---
 function displayAddress(addressSpeech, botChatDiv) {
+	/**
+	 * add the bot's image and the address response into the dedicated div
+ 	 */
 	const botUserElement = document.getElementById(botChatDiv);
 	const imgBot1 = new Image();
 	imgBot1.src = 'static/images/mini-bot.png';
@@ -102,7 +141,11 @@ function displayAddress(addressSpeech, botChatDiv) {
 	botUserElement.prepend(imgBot1, responseAddr);
 }
 
+// --- extract ---
 function displayStory(extractSpeech, botChatDiv) {
+	/**
+	 * add the bot's image and the story response into the dedicated div
+ 	 */
 	const botUserElement = document.getElementById(botChatDiv);
 	const imgBot2 = new Image();
 	imgBot2.src = 'static/images/mini-bot.png';
@@ -112,7 +155,11 @@ function displayStory(extractSpeech, botChatDiv) {
 	botUserElement.appendChild(responseExtr);
 }
 
+// --- wiki url ---
 function displayWikiLink(wiki_url, botChatDiv) {
+	/**
+	 * add the bot's image and the wiki url response into the dedicated div
+ 	 */
 	const botUserElement = document.getElementById(botChatDiv);
 	const imgBot3 = new Image();
 	imgBot3.src = 'static/images/mini-bot.png';
@@ -124,6 +171,9 @@ function displayWikiLink(wiki_url, botChatDiv) {
 
 // -------------------- LOADER --------------------
 function displayLoader(botChatDiv) {
+	/**
+	 * create a div containing a loader which precedes the bot responses
+ 	 */
 	const botUserElement = document.getElementById(botChatDiv);
 	const loader = document.createElement("div");
 	loader.className = "loader";
@@ -135,37 +185,46 @@ function displayLoader(botChatDiv) {
 function botResponses(usrQuestion, addressSpeech, extractSpeech, wiki_url,
 					  locationCoordinates, mapsResp, wikiResp, mapsDiv,
 					  userChatDiv, botChatDiv) {
-
-		displayLoader(botChatDiv);
-		if (mapsResp == "not_found") {
-			displayUserQuestion(usrQuestion, userChatDiv);
-			setTimeout(function() {displayAddress(addressSpeech, botChatDiv);},1500);
+	/**
+	 * Set up all the dialogues between the user and
+	 * the bot by adding a delay between each response
+ 	 */
+	displayLoader(botChatDiv);
+	if (mapsResp == "not_found") {
+		displayUserQuestion(usrQuestion, userChatDiv);
+		setTimeout(function() {displayAddress(addressSpeech, botChatDiv);},1500);
+	} else {
+		displayUserQuestion(usrQuestion, userChatDiv);
+		setTimeout(function() {displayAddress(addressSpeech, botChatDiv);},1500);
+		setTimeout(function() {initMap(locationCoordinates, mapsDiv);},2500);
+		if (wikiResp != "none") {
+			setTimeout(function() {displayStory(extractSpeech, botChatDiv);},3500);
+			setTimeout(function() {displayWikiLink(wiki_url, botChatDiv);},4500);
 		} else {
-			displayUserQuestion(usrQuestion, userChatDiv);
-			setTimeout(function() {displayAddress(addressSpeech, botChatDiv);},1500);
-			setTimeout(function() {initMap(locationCoordinates, mapsDiv);},2500);
-			if (wikiResp != "none") {
-				setTimeout(function() {displayStory(extractSpeech, botChatDiv);},3500);
-				setTimeout(function() {displayWikiLink(wiki_url, botChatDiv);},4500);
-			} else {
-				setTimeout(function() {displayStory(extractSpeech, botChatDiv);},3500);
-			}
+			setTimeout(function() {displayStory(extractSpeech, botChatDiv);},3500);
 		}
+	}
 }
 
 // -------------------- AJAX --------------------
 const formElement = document.querySelector("form");
 
 $(document).ready(function() {
-
+	/**
+	 * Select the user input form
+ 	 */
 	formElement.addEventListener("submit", function(event) {
-
+	/**
+	 * When submitting, user input is sent to the process() view
+ 	 */
 		$.ajax({
 			url: '/process',
 			data: $('form').serialize(),
 			type: 'POST',
 			success: function(response) {
-
+				/**
+				 * Set up the display of the dialogs from the process() view response
+				 */
 				const aSpeech = addressSpeech(status=response['infos']['maps_status'],
 				                              address=response['infos']['maps_address']);
 				const eSpeech = extractSpeech(responseNb=response['infos']['wiki_response_nb'],

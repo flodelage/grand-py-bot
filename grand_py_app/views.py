@@ -15,6 +15,10 @@ def home():
 
 @app.route('/process', methods=['POST'])
 def process():
+    """
+    Retrieves and processes user input in order to
+    provide the necessary elements to the front
+    """
     question = request.form['question']
     response = Response()
     return jsonify({"infos": response.infos(question)})
