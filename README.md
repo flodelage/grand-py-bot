@@ -1,5 +1,6 @@
 # GrandPyBot
 This application is the seventh project of the OpenClassrooms' Python developer course.
+Site en production sur Heroku: https://gd-py-bot.herokuapp.com/
 
 ## Application description
 The application aims to provide the user with the location and a story about a chosen place.
