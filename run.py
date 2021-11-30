@@ -4,7 +4,7 @@ from grand_py_app.views import app
 
 
 app.config.update(
-    DEBUG = True,
+    DEBUG = False,
     SECRET_KEY = FLASK_KEY,
     MAPS_JS_KEY = MAPS_JS_KEY
 )
